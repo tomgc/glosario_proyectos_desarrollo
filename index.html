@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Glosario de desarrollo de software e IA</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #2f5d50;
+    --border: #e0e0dc;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .layout { display: flex; max-width: 1100px; margin: 0 auto; }
+  nav {
+    width: 240px;
+    flex-shrink: 0;
+    padding: 32px 16px;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  nav h2 {
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    margin: 20px 0 6px;
+  }
+  nav h2:first-child { margin-top: 0; }
+  nav a {
+    display: block;
+    font-size: 15px;
+    color: var(--text);
+    text-decoration: none;
+    padding: 3px 0 3px 8px;
+    border-left: 2px solid transparent;
+  }
+  nav a:hover { border-left-color: var(--accent); color: var(--accent); }
+  main { flex: 1; padding: 32px 32px 80px 24px; min-width: 0; }
+  header.title { margin-bottom: 8px; }
+  header.title h1 { font-size: 26px; margin: 0 0 4px; }
+  header.title p { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
+  #search {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 32px;
+    background: var(--card);
+    color: var(--text);
+  }
+  #search:focus { outline: none; border-color: var(--accent); }
+  section.category { margin-bottom: 36px; }
+  section.category > h2 {
+    font-size: 18px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+    scroll-margin-top: 16px;
+  }
+  article.term {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    scroll-margin-top: 16px;
+  }
+  article.term h3 { margin: 0 0 10px; font-size: 18px; color: var(--accent); }
+  article.term p { margin: 0 0 8px; font-size: 15px; }
+  article.term .label {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    display: inline-block;
+    margin-right: 6px;
+  }
+  article.term .contexto {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+    font-size: 15px;
+    color: #333;
+  }
+  article.term.hidden { display: none; }
+  code {
+    background: #f0f0ec;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 15px;
+  }
+  .no-results { color: var(--muted); font-style: italic; display: none; }
+  @media (max-width: 800px) {
+    .layout { flex-direction: column; }
+    nav { width: 100%; position: static; max-height: none; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <h2>Auditoría</h2>
+  <a href="#auditoria">Auditoría</a>
+  <h2>Datos</h2>
+  <a href="#microdato">Microdato</a>
+  <a href="#parquet">Parquet</a>
+  <h2>Desarrollo de software</h2>
+  <a href="#backlog">Backlog</a>
+  <a href="#css">CSS</a>
+  <a href="#commit">Commit</a>
+  <a href="#end-to-end">End-to-end</a>
+  <a href="#git-github">Git y GitHub</a>
+  <a href="#gobernanza">Gobernanza</a>
+  <a href="#orquestador">Orquestador</a>
+  <a href="#render">Render</a>
+  <h2>Inteligencia artificial</h2>
+  <a href="#ia-generativa">IA generativa</a>
+  <a href="#llm">LLM</a>
+  <a href="#machine-learning">Machine learning</a>
+  <a href="#modelo-ia">Modelo de IA</a>
+  <a href="#panel-adversarial">Panel adversarial</a>
+  <a href="#prompt">Prompt</a>
+  <h2>Reuso de código</h2>
+  <a href="#patron-familia">Patrón de familia</a>
+  <h2>Pendientes</h2>
+  <a href="#pendientes">Pendientes</a>
+</nav>
+<main>
+  <header class="title">
+    <h1>Glosario de desarrollo de software e IA</h1>
+    <p>Definiciones generales y técnicas, con contexto de uso propio cuando aplica.</p>
+  </header>
+
+  <input id="search" type="text" placeholder="Buscar término...">
+  <p class="no-results">Sin resultados.</p>
+
+  <section class="category" id="cat-auditoria">
+    <h2>Auditoría</h2>
+
+    <article class="term" id="auditoria">
+      <h3>Auditoría</h3>
+      <p><span class="label">General</span>Revisión sistemática que verifica si algo (un proceso, un dato, un resultado) cumple con lo que se espera de él, detectando errores o desviaciones antes de que causen problemas.</p>
+      <p><span class="label">Técnica</span>Verificación sistemática de que el estado de un sistema o de sus outputs cumple reglas, contratos o cifras esperadas, típicamente comparando dos caminos de cálculo independientes (caché contra recálculo desde el dato crudo) con tolerancias definidas como constantes nombradas. Puede aplicarse a código (cumplimiento de convenciones, estructura de carpetas), a datos (integridad, rangos esperados) o a cifras publicadas (validación cruzada antes de publicar).</p>
+      <p class="contexto"><span class="label">Contexto</span>En tus proyectos, la auditoría de cifras sigue un patrón de tres scripts (helpers + orquestador de familias + spot-check): cada cifra se calcula por dos caminos independientes y se compara con una tolerancia definida; una familia que falla no aborta la validación de las demás.</p>
+    </article>
+  </section>
+
+  <section class="category" id="cat-datos">
+    <h2>Datos</h2>
+
+    <article class="term" id="microdato">
+      <h3>Microdato</h3>
+      <p><span class="label">General</span>Un dato que describe a una sola persona, institución o caso individual, a diferencia de un promedio o total que junta a muchos.</p>
+      <p><span class="label">Técnica</span>Registro de datos referido a una unidad de observación individual (una persona, un establecimiento, un hogar), antes de cualquier agregación. Los microdatos se combinan y resumen para producir macrodatos o estadísticas agregadas (promedios, totales, indicadores por grupo). La distinción es relevante para gobernanza de datos: un microdato con identificadores (RUT, nombre) suele ser dato personal o sensible, mientras que el agregado que resulta de él generalmente no lo es.</p>
+    </article>
+
+    <article class="term" id="parquet">
+      <h3>Parquet</h3>
+      <p><span class="label">General</span>Formato de archivo para guardar datos, pensado para que ocupe poco espacio y se pueda leer muy rápido, especialmente cuando el archivo es grande.</p>
+      <p><span class="label">Técnica</span>Formato de almacenamiento columnar (orienta el disco por columna, no por fila), de código abierto, que agrupa cada columna con su propio esquema y compresión, permitiendo leer solo las columnas necesarias en una consulta en vez de todo el archivo. Ofrece compresión más eficiente que formatos orientados a fila como CSV (valores del mismo tipo agrupados comprimen mejor), y guarda metadatos y esquema junto al dato, lo que evita ambigüedades de tipo al leerlo desde distintos sistemas.</p>
+      <p class="contexto"><span class="label">Contexto</span>En tu política de proyecto, <code>.parquet</code> es el formato canónico para datos masivos (frente a <code>.xlsx</code>, reservado solo para entregables finales, y <code>.csv</code>, solo cuando el destino externo lo exige); la escritura atómica (patrón write → rename) se exige para todo artefacto <code>.parquet</code> que alimente procesos posteriores.</p>
+    </article>
+  </section>
+
+  <section class="category" id="cat-desarrollo">
+    <h2>Desarrollo de software (general)</h2>
+
+    <article class="term" id="backlog">
+      <h3>Backlog</h3>
+      <p><span class="label">General</span>Lista de tareas, pendientes o mejoras que un equipo o proyecto aún no ha resuelto, ordenada para saber qué hacer a continuación.</p>
+      <p><span class="label">Técnica</span>Registro histórico y acumulativo de cambios, solicitudes y decisiones de un proyecto, usado como fuente de verdad del avance a lo largo de sesiones o iteraciones. Puede incluir clasificación temática, métricas de qué proporción de cambios cae en cada categoría, y un detalle cronológico con numeración correlativa permanente (nunca se reescribe ni renumera; las correcciones se agregan como entradas nuevas).</p>
+      <p class="contexto"><span class="label">Contexto</span>En tu flujo de trabajo, el backlog es append-only: las entradas previas nunca se editan ni renumeran, y un error se corrige agregando una entrada nueva, no modificando la anterior.</p>
+    </article>
+
+    <article class="term" id="css">
+      <h3>CSS</h3>
+      <p><span class="label">General</span>El lenguaje que define cómo se ve una página web (colores, tipografía, espaciado, diseño), separado del contenido (HTML) y del comportamiento (JavaScript).</p>
+      <p><span class="label">Técnica</span>Cascading Style Sheets. Lenguaje de hojas de estilo que define la presentación visual de documentos HTML: layout, tipografía, color, animaciones y comportamiento responsivo. Sigue un modelo de cascada donde reglas más específicas o más cercanas al elemento (inline &gt; interna &gt; externa) sobrescriben a las más generales. Se usa junto con patrones de diseño reutilizables (grillas, layouts tipo Holy Grail, sistemas de columnas) para mantener consistencia y evitar duplicación.</p>
+    </article>
+
+    <article class="term" id="commit">
+      <h3>Commit</h3>
+      <p><span class="label">General</span>Guardar una versión de tu trabajo con una nota que explica qué cambiaste, de forma que siempre puedas volver a ese punto exacto más adelante.</p>
+      <p><span class="label">Técnica</span>Unidad atómica de cambio en un sistema de control de versiones (Git), que registra el estado de uno o más archivos junto con metadatos (autor, fecha, mensaje descriptivo) y un identificador único (hash). Los commits forman el historial granular del proyecto; se recomiendan frecuentes y con mensajes descriptivos, y son la base sobre la que se construyen ramas y Pull Requests.</p>
+      <p class="contexto"><span class="label">Contexto</span>En tu flujo, los commits van en español, con mensajes descriptivos que explican el "por qué" del cambio, no solo el "qué"; las operaciones de Git como <code>git push</code> y <code>gh pr create</code> se ejecutan siempre de forma individual, nunca encadenadas con <code>&amp;&amp;</code>.</p>
+    </article>
+
+    <article class="term" id="end-to-end">
+      <h3>End-to-end (en desarrollo de software)</h3>
+      <p><span class="label">General</span>Probar o ejecutar un proceso completo, de principio a fin, tal como lo experimentaría un usuario real, en lugar de revisar solo una parte aislada.</p>
+      <p><span class="label">Técnica</span>Enfoque de prueba o ejecución que cubre todo el flujo de un sistema, desde la entrada inicial hasta la salida final, verificando que todos los componentes trabajen correctamente en conjunto (no solo cada uno por separado). Un pipeline que "corre end-to-end" ejecuta todas sus etapas de forma encadenada y produce el resultado esperado sin intervención manual.</p>
+    </article>
+
+    <article class="term" id="git-github">
+      <h3>Git y GitHub</h3>
+      <p><span class="label">General</span>Git es un programa que guarda el historial de cambios de un proyecto de código, permitiendo volver atrás o ver qué cambió y cuándo. GitHub es un sitio web que almacena esos proyectos en la nube y permite compartirlos o trabajar en equipo sobre ellos.</p>
+      <p><span class="label">Técnica</span>Git es un sistema de control de versiones distribuido que registra el historial de cambios de un repositorio mediante commits, permite trabajo en ramas (branches) paralelas y ofrece mecanismos de fusión (merge). GitHub es una plataforma de alojamiento de repositorios Git que añade funciones colaborativas: Pull Requests, revisión de código, control de acceso, Issues, Actions (integración continua) y protección de ramas.</p>
+      <p class="contexto"><span class="label">Contexto</span>Trabajas con repos privados en GitHub bajo el plan Free, lo que implica que ramas privadas no tienen branch protection nativa; lo compensas con disciplina de Pull Request documentada, Secret Scanning y Dependabot habilitados, y flujo de squash merge con eliminación automática de la rama.</p>
+    </article>
+
+    <article class="term" id="gobernanza">
+      <h3>Gobernanza (en desarrollo de software)</h3>
+      <p><span class="label">General</span>El conjunto de reglas que definen quién puede acceder a los datos de un proyecto, cómo se protegen y qué está permitido hacer con ellos, especialmente cuando se trata de información sensible o de personas.</p>
+      <p><span class="label">Técnica</span>Marco de principios, reglas y controles que rige cómo se manejan los datos y las decisiones arquitectónicas de un proyecto: separación física entre datos sensibles y código, control de acceso, cumplimiento normativo (protección de datos personales), y trazabilidad de las decisiones que afectan esa gestión. Incluye la documentación formal de qué datos se manejan, su categoría legal, quién tiene acceso y el procedimiento ante un incidente de seguridad.</p>
+      <p class="contexto"><span class="label">Contexto</span>En tus proyectos, la gobernanza de datos exige que datos personales (RUT, nombres, resultados individuales) nunca entren al repositorio Git: la separación entre raíz de código (Git) y raíz de datos (OneDrive institucional) es física, no solo un <code>.gitignore</code>.</p>
+    </article>
+
+    <article class="term" id="orquestador">
+      <h3>Orquestador</h3>
+      <p><span class="label">General</span>El programa o script que coordina y ejecuta, en el orden correcto, todos los pasos de un proceso más grande, para que no haya que correrlos uno por uno a mano.</p>
+      <p><span class="label">Técnica</span>Punto de entrada único de un pipeline que secuencia la ejecución de sus etapas, valida precondiciones antes de correr, mide duración por paso, y falla con mensaje claro ante error en lugar de continuar silenciosamente. No contiene lógica de negocio propia: su responsabilidad es coordinar, no transformar datos.</p>
+      <p class="contexto"><span class="label">Contexto</span>En tu arquitectura, el orquestador (<code>00_run_all.R</code>) ancla la raíz del proyecto, carga primero las utilidades de bootstrapping, y expone argumentos estándar (<code>from</code>, <code>to</code>, <code>only</code>, <code>skip</code>) para ejecutar el pipeline completo o subconjuntos de él.</p>
+    </article>
+
+    <article class="term" id="render">
+      <h3>Render</h3>
+      <p><span class="label">General</span>El proceso por el cual un programa (como un navegador o una app) toma datos o código y los convierte en lo que finalmente se ve en la pantalla.</p>
+      <p><span class="label">Técnica</span>Proceso de transformar una representación abstracta (datos, código, un modelo) en su salida visual final. En desarrollo web, el navegador construye el DOM y el CSSOM a partir del HTML y CSS, calcula estilos, determina el layout (tamaño y posición de cada elemento) y pinta los píxeles en pantalla. En aplicaciones de datos o dashboards, "renderizar" un componente significa generar su representación visible (una tabla, un gráfico, una tarjeta) a partir del dato subyacente.</p>
+    </article>
+  </section>
+
+  <section class="category" id="cat-ia">
+    <h2>Inteligencia artificial</h2>
+
+    <article class="term" id="ia-generativa">
+      <h3>Inteligencia artificial generativa</h3>
+      <p><span class="label">General</span>Tipo de inteligencia artificial que no solo analiza información existente, sino que crea contenido nuevo (texto, imágenes, audio, código) a partir de patrones aprendidos de grandes cantidades de datos.</p>
+      <p><span class="label">Técnica</span>Subcampo de la inteligencia artificial enfocado en modelos (generalmente basados en aprendizaje profundo, como transformers o modelos de difusión) entrenados para generar contenido nuevo y original que sigue la distribución estadística de los datos de entrenamiento, en lugar de solo clasificar o predecir sobre datos existentes. Los modelos de lenguaje grandes (LLM) son el caso más extendido de esta categoría.</p>
+    </article>
+
+    <article class="term" id="llm">
+      <h3>LLM (large language model)</h3>
+      <p><span class="label">General</span>Un programa de inteligencia artificial entrenado con enormes cantidades de texto, capaz de entender lo que se le escribe y responder con lenguaje natural, como Claude o ChatGPT.</p>
+      <p><span class="label">Técnica</span>Modelo de aprendizaje profundo, típicamente basado en arquitectura Transformer, entrenado sobre grandes volúmenes de texto para predecir la siguiente unidad de texto (token) en una secuencia. Esa capacidad de predicción, escalada a miles de millones de parámetros, produce comprensión y generación de lenguaje natural de propósito general (clasificación, traducción, generación de código, razonamiento), sin que cada tarea requiera reglas programadas explícitamente.</p>
+      <p class="contexto"><span class="label">Contexto</span>En tu flujo de trabajo, distingues explícitamente el rol de dos LLM: Claude chat como colaborador estratégico (planificación, decisiones de diseño, redacción de documentos) y Claude Code como entorno de ejecución (operaciones de archivo, comandos Git).</p>
+    </article>
+
+    <article class="term" id="machine-learning">
+      <h3>Machine learning</h3>
+      <p><span class="label">General</span>Rama de la inteligencia artificial en la que un programa aprende a partir de ejemplos y datos, en lugar de seguir reglas escritas a mano por una persona.</p>
+      <p><span class="label">Técnica</span>Conjunto de técnicas y algoritmos que permiten a un sistema mejorar su desempeño en una tarea a partir de la exposición a datos, ajustando parámetros internos (pesos de un modelo) sin que cada regla de decisión sea programada explícitamente. Incluye enfoques supervisados, no supervisados y de refuerzo, y es la base técnica sobre la que se construyen el deep learning y los modelos generativos modernos.</p>
+    </article>
+
+    <article class="term" id="modelo-ia">
+      <h3>Modelo de IA</h3>
+      <p><span class="label">General</span>El "cerebro" entrenado que usa un sistema de inteligencia artificial para tomar decisiones o generar respuestas; es el resultado de haber entrenado un algoritmo con muchos datos.</p>
+      <p><span class="label">Técnica</span>Artefacto computacional resultante de un proceso de entrenamiento, compuesto por una arquitectura (por ejemplo, una red neuronal) y un conjunto de parámetros (pesos) ajustados sobre datos, que produce predicciones, clasificaciones o generación de contenido ante una nueva entrada. Los modelos fundacionales son modelos de gran escala entrenados con datos generales, capaces de adaptarse a múltiples tareas sin reentrenamiento específico para cada una.</p>
+    </article>
+
+    <article class="term" id="panel-adversarial">
+      <h3>Panel adversarial</h3>
+      <p><span class="label">General</span>Revisión que, en vez de solo confirmar que el código corrió sin error, intenta activamente encontrarle fallas al resultado: recalcula todo por un camino distinto e independiente para ver si las cifras coinciden.</p>
+      <p><span class="label">Técnica</span>Verificación independiente que re-deriva el resultado desde el dato crudo (no desde los objetos intermedios ya calculados), usando código propio y comprobando invariantes lógicos explícitos (por ejemplo: que ninguna unidad se doble-cuente entre series, o que un subconjunto sea siempre ≤ que su superconjunto por construcción). Si un invariante falla, indica un bug de lógica y detiene el proceso en vez de continuar.</p>
+      <p class="contexto"><span class="label">Contexto</span>En tus auditorías con datos y llaves sensibles de por medio, el panel adversarial es un paso obligatorio post-cómputo: re-deriva cifras clave desde el parquet fuente con lógica propia, valida invariantes de reconciliación (matrícula total por año, no doble-conteo por serie, retención de establecimiento ≤ retención de sistema) y para de inmediato si alguno falla, reportando el hallazgo con evidencia.</p>
+    </article>
+
+    <article class="term" id="prompt">
+      <h3>Prompt</h3>
+      <p><span class="label">General</span>El texto o instrucción que le escribes a un sistema de inteligencia artificial para pedirle que haga algo.</p>
+      <p><span class="label">Técnica</span>Entrada textual (o multimodal) que se entrega a un modelo de IA para condicionar su salida. Su diseño (prompt engineering) afecta directamente la calidad, precisión y formato de la respuesta: incluye técnicas como dar ejemplos positivos y negativos, pedir razonamiento paso a paso, especificar formato de salida o restricciones de longitud.</p>
+      <p class="contexto"><span class="label">Contexto</span>En tu flujo de trabajo, los prompts que van dirigidos a Claude Code se distinguen explícitamente de la prosa conversacional: siempre en bloques de código, marcados con "→ Claude Code:", sin excepción incluso para instrucciones de una sola línea.</p>
+    </article>
+  </section>
+
+  <section class="category" id="cat-reuso">
+    <h2>Reuso de código</h2>
+
+    <article class="term" id="patron-familia">
+      <h3>Patrón de familia</h3>
+      <p><span class="label">General</span>Cuando varios proyectos parecidos comparten una misma pieza de código o de diseño, y en vez de copiarla en cada uno, se centraliza en un solo lugar del que todos la usan.</p>
+      <p><span class="label">Técnica</span>Estrategia de reuso transversal entre proyectos hermanos que comparten una base de código o convenciones (por ejemplo, un mismo dominio o cartera de proyectos), consistente en identificar utilidades, módulos o convenciones repetidas (idealmente byte-idénticas) y extraerlas a un paquete o carpeta central de la cual cada proyecto consume, en lugar de mantener copias locales que pueden desincronizarse.</p>
+      <p class="contexto"><span class="label">Contexto</span>En tu backlog, "reuso y patrón de familia" agrupa casos como funciones de paleta de colores, rutas auxiliares o utilidades compartidas (d3, pako) que se busca centralizar entre los proyectos hermanos, distinguiendo lo que es genuinamente byte-idéntico (seguro de extraer) de lo que tiene firmas incompatibles entre proyectos (requiere resolución explícita antes de extraerse).</p>
+    </article>
+  </section>
+
+  <section class="category" id="pendientes">
+    <h2>Pendientes</h2>
+    <article class="term">
+      <p>Encargo autónomo a Claude Code: escanear <code>backlog_acumulativo.md</code> y la documentación de cada proyecto de la cartera para buscar buenos ejemplos reales de los términos ya definidos, como insumo para enriquecer la sección "Contexto" de cada entrada.</p>
+      <p>Revisión de estilo: verificar en cada actualización que no queden bloques en mayúscula sostenida (ALLCAPS), salvo siglas o palabras que lo justifiquen.</p>
+    </article>
+  </section>
+
+</main>
+</div>
+
+<script>
+  const search = document.getElementById('search');
+  const terms = Array.from(document.querySelectorAll('article.term'));
+  const noResults = document.querySelector('.no-results');
+
+  search.addEventListener('input', () => {
+    const q = search.value.trim().toLowerCase();
+    let visibleCount = 0;
+    terms.forEach(t => {
+      const match = q === '' || t.textContent.toLowerCase().includes(q);
+      t.classList.toggle('hidden', !match);
+      if (match) visibleCount++;
+    });
+    document.querySelectorAll('section.category').forEach(sec => {
+      const anyVisible = sec.querySelectorAll('article.term:not(.hidden)').length > 0;
+      sec.style.display = anyVisible ? '' : 'none';
+    });
+    noResults.style.display = (visibleCount === 0) ? 'block' : 'none';
+  });
+</script>
+</body>
+</html>
