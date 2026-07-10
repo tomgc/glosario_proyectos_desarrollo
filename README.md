@@ -52,6 +52,36 @@ esta pensada para proyectos con procesamiento de datos): usa una
 estructura minima plana en la raiz. Es una excepcion justificada por el
 tipo de proyecto, no deuda heredada.
 
+## Convenciones de este proyecto
+
+Este proyecto se trata como sesión tipo BIBLIOTECA (protocolo
+`SETTINGS_Y_PROMPTS_OPERACIONALES.md` §1.5 del repositorio
+`herramientas_dev`): cierre liviano por sesión, no el protocolo completo
+de traspasos (`traspaso_cierre_vNN.md` + `backlog_acumulativo.md` +
+escaner). Ese protocolo completo esta pensado para proyectos con
+pipeline y estados intermedios que coordinar entre sesiones; este
+proyecto no tiene pipeline ni estados intermedios, solo contenido que se
+actualiza por lotes.
+
+Cada sesion de trabajo sustantivo cierra con un archivo en
+`50_documentacion/cierres/AAAAMMDD_cierre.md`, con esta forma:
+
+```markdown
+# Cierre — AAAA-MM-DD
+
+## Artefactos producidos o modificados
+[lista de archivos con que cambio]
+
+## Decisiones clave
+[2-4 decisiones de diseno que conviene recordar]
+
+## Terminos agregados o modificados en esta sesion
+[lista, si aplica]
+
+## Proximos artefactos posibles
+[ideas no materializadas, si las hay]
+```
+
 ## Licencia
 
 MIT. Ver `LICENSE`.
